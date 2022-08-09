@@ -59,9 +59,9 @@
     <Compile Include="Assets\Scripts\CameraFollow.cs" />
     <Compile Include="Assets\Scripts\APCCarController.cs" />
     <Compile Include="Assets\Scripts\SimpleCarController.cs" />
-    <Compile Include="Assets\Scripts\AntiRollRearAxle.cs" />
     <Compile Include="Assets\APC Military Vehicle-Mobile\camara3d\Scripts\Camera\CameraDefault.cs" />
-    <Compile Include="Assets\Scripts\AntiRollFrontAxle.cs" />
+    <Compile Include="Assets\Scripts\FrontRollBar.cs" />
+    <Compile Include="Assets\Scripts\RearRollBar.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\APC Military Vehicle-Mobile\Read Me.txt" />

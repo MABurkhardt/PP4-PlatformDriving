@@ -171,9 +171,9 @@ WheelCollider:
   m_SuspensionDistance: 0.3
   m_ForceAppPointDistance: 0
   m_Mass: 20
-  m_WheelDampingRate: 0.25
+  m_WheelDampingRate: 27.5
   m_ForwardFriction:
-    m_ExtremumSlip: 0.5
+    m_ExtremumSlip: 0.25
     m_ExtremumValue: 1
     m_AsymptoteSlip: 0.8
     m_AsymptoteValue: 0.5
@@ -404,7 +404,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: efb487750de679a4dbf86c4ad60f8aa4, type: 2}
+  - {fileID: 2100000, guid: d2b1384bf2644844891551d8b45042bc, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1369,9 +1369,9 @@ WheelCollider:
   m_SuspensionDistance: 0.3
   m_ForceAppPointDistance: 0
   m_Mass: 20
-  m_WheelDampingRate: 0.25
+  m_WheelDampingRate: 27.5
   m_ForwardFriction:
-    m_ExtremumSlip: 0.5
+    m_ExtremumSlip: 0.25
     m_ExtremumValue: 1
     m_AsymptoteSlip: 0.8
     m_AsymptoteValue: 0.5
@@ -1635,9 +1635,9 @@ WheelCollider:
   m_SuspensionDistance: 0.3
   m_ForceAppPointDistance: 0
   m_Mass: 20
-  m_WheelDampingRate: 0.25
+  m_WheelDampingRate: 27.5
   m_ForwardFriction:
-    m_ExtremumSlip: 0.5
+    m_ExtremumSlip: 0.25
     m_ExtremumValue: 1
     m_AsymptoteSlip: 0.8
     m_AsymptoteValue: 0.5
@@ -1794,9 +1794,9 @@ WheelCollider:
   m_SuspensionDistance: 0.3
   m_ForceAppPointDistance: 0
   m_Mass: 20
-  m_WheelDampingRate: 0.25
+  m_WheelDampingRate: 27.5
   m_ForwardFriction:
-    m_ExtremumSlip: 0.5
+    m_ExtremumSlip: 0.25
     m_ExtremumValue: 1
     m_AsymptoteSlip: 0.8
     m_AsymptoteValue: 0.5
@@ -2551,6 +2551,8 @@ GameObject:
   - component: {fileID: 9031194980325065926}
   - component: {fileID: 9031194980325065925}
   - component: {fileID: 9031194980325065927}
+  - component: {fileID: 9031194980325065929}
+  - component: {fileID: 9031194980325065928}
   m_Layer: 0
   m_Name: APC_Root
   m_TagString: Untagged
@@ -2599,9 +2601,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5c7bb80945d948458b9addb5d356dbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  motorForce: 1100
+  motorForce: 1500
   breakForce: 3000
-  maxSteerAngle: 30
+  maxSteerAngle: 35
   frontLeftCollider: {fileID: 1177886084}
   frontRightCollider: {fileID: 157176176}
   rearLeftCollider: {fileID: 1753121969}
@@ -2610,6 +2612,38 @@ MonoBehaviour:
   frontRightTransform: {fileID: 9144026314523379974}
   rearLeftTransform: {fileID: 2453403933857467797}
   rearRightTransform: {fileID: 8437144107333678648}
+--- !u!114 &9031194980325065928
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9031194980325065924}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64a68c851a932804da15a8dbec406c3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  carBody: {fileID: 9031194980325065926}
+  WheelL: {fileID: 1753121969}
+  WheelR: {fileID: 1522408160}
+  AntiRoll: 5000
+--- !u!114 &9031194980325065929
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9031194980325065924}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f9d80e84e59cd24f8963891c6bf1cf7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  carBody: {fileID: 9031194980325065926}
+  WheelL: {fileID: 1177886084}
+  WheelR: {fileID: 157176176}
+  AntiRoll: 5000
 --- !u!4 &9144026314523379974
 Transform:
   m_ObjectHideFlags: 0
