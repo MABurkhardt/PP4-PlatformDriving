@@ -57,13 +57,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\CameraFollow.cs" />
+    <Compile Include="Assets\Scripts\RearRollBar.cs" />
     <Compile Include="Assets\Scripts\APCCarController.cs" />
     <Compile Include="Assets\Scripts\SimpleCarController.cs" />
-    <Compile Include="Assets\APC Military Vehicle-Mobile\camara3d\Scripts\Camera\CameraDefault.cs" />
     <Compile Include="Assets\Scripts\FrontRollBar.cs" />
-    <Compile Include="Assets\Scripts\RearRollBar.cs" />
+    <Compile Include="Assets\PlayerControls.cs" />
+    <Compile Include="Assets\APC Military Vehicle-Mobile\camara3d\Scripts\Camera\CameraDefault.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\Rowlan\Terrain\Stamps\Examples\Demo\readme.txt" />
     <None Include="Assets\APC Military Vehicle-Mobile\Read Me.txt" />
   </ItemGroup>
   <ItemGroup>
@@ -743,13 +745,17 @@
       <Project>{FC500E73-89FD-C60B-D85E-28A6B2C97643}</Project>
       <Name>UnityEditor.UI</Name>
     </ProjectReference>
-    <ProjectReference Include="Unity.PlasticSCM.Editor.csproj">
-      <Project>{9D1EE9D0-FD54-7825-C727-E6DF3C37CA96}</Project>
-      <Name>Unity.PlasticSCM.Editor</Name>
+    <ProjectReference Include="Unity.InputSystem.csproj">
+      <Project>{6A9177F6-5576-8278-2081-B998720084D9}</Project>
+      <Name>Unity.InputSystem</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.Rider.Editor.csproj">
       <Project>{9A52D367-9BEF-272C-6E46-B95BAAC35D9C}</Project>
       <Name>Unity.Rider.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.PlasticSCM.Editor.csproj">
+      <Project>{9D1EE9D0-FD54-7825-C727-E6DF3C37CA96}</Project>
+      <Name>Unity.PlasticSCM.Editor</Name>
     </ProjectReference>
     <ProjectReference Include="UnityEngine.UI.csproj">
       <Project>{72E55FC0-F659-BB74-A93E-680B966BF2AF}</Project>

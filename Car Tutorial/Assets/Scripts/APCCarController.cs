@@ -1,9 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class APCCarController : MonoBehaviour
 {
+    [SerializeField] private GameObject body;
+    private bool upButtonIsReady = true;
+    private Quaternion initialRotation;
+    //private PlayerControls controls;
+    //[SerializeField] private GameObject go;
+
     private const string HORIZONTAL = "Horizontal";
     private const string VERTICAL = "Vertical";
 
@@ -27,9 +34,29 @@ public class APCCarController : MonoBehaviour
     [SerializeField] private Transform rearLeftTransform;
     [SerializeField] private Transform rearRightTransform;
 
-    private void FixedUpdate()
+    private void Awake()
+    {
+        initialRotation = body.transform.rotation;
+        //controls = new PlayerControls();
+    }
+
+    //private void OnEnable()
+    //{
+    //    controls.Gameplay.Enable();
+    //}
+
+    //private void OnDisable()
+    //{
+    //    controls.Gameplay.Disable();
+    //}
+
+    private void Update()
     {
         GetInput();
+    }
+
+    private void FixedUpdate()
+    {
         HandleMotor();
         HandleSteering();
         UpdateWheels();
@@ -37,9 +64,41 @@ public class APCCarController : MonoBehaviour
 
     private void GetInput()
     {
+        //steering
         horizontalInput = Input.GetAxis(HORIZONTAL);
-        verticalInput = Input.GetAxis(VERTICAL);
-        isBreaking = Input.GetKey(KeyCode.Space);
+
+        //forward/reverse/light brake
+        verticalInput = Input.GetAxis("RightTrigger");
+        if (Input.GetAxis("LeftTrigger") > 0)
+        {
+            verticalInput = -Input.GetAxis("LeftTrigger");
+            ReverseMotor();
+        }
+
+        //handbrake
+        if (Input.GetAxis("AButton") == 1)
+        {
+            isBreaking = true;
+        }
+        else
+        {
+            isBreaking = false;
+        }
+
+        //reset player
+        if (Input.GetAxis("DPadUp") > 0)
+        {
+            if (upButtonIsReady)
+            {
+                upButtonIsReady = false;
+                body.transform.position += new Vector3(0, 2, 0);
+                body.transform.rotation = initialRotation;
+            }
+        }
+        else
+        {
+            upButtonIsReady = true;
+        }
     }
 
     private void HandleMotor()
@@ -84,5 +143,17 @@ public class APCCarController : MonoBehaviour
         wheelCollider.GetWorldPose(out pos, out rot);
         wheelTransform.rotation = rot;
         wheelTransform.position = pos;
+    }
+
+    private void ReverseMotor()
+    {
+        currentBreakForce = isBreaking ? breakForce : 0f;
+
+        frontLeftCollider.motorTorque = -verticalInput * motorForce;
+        frontRightCollider.motorTorque = -verticalInput * motorForce;
+        rearLeftCollider.motorTorque = -verticalInput * motorForce;
+        rearRightCollider.motorTorque = -verticalInput * motorForce;
+
+        ApplyBreaking();
     }
 }

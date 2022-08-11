@@ -19,7 +19,6 @@ public class CameraFollow : MonoBehaviour
     {
         Vector3 targetPosition = target.TransformPoint(offset);
         transform.position = Vector3.Lerp(transform.position, targetPosition, translateSpeed * Time.deltaTime);
-
     }
 
     private void HandleRotation()
