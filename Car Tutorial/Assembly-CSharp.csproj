@@ -797,6 +797,10 @@
       <Project>{028819F6-E385-F6AA-6F38-7229F4C2344E}</Project>
       <Name>Unity.VisualScripting.State</Name>
     </ProjectReference>
+    <ProjectReference Include="RoadArchitect.csproj">
+      <Project>{B8092E0E-B577-225F-681D-A50EBF182B7C}</Project>
+      <Name>RoadArchitect</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
