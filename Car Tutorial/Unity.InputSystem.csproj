@@ -255,8 +255,8 @@
     <Compile Include="Library\PackageCache\com.unity.inputsystem@1.3.0\InputSystem\Plugins\PlayerInput\PlayerInputManagerEditor.cs" />
     <Compile Include="Library\PackageCache\com.unity.inputsystem@1.3.0\InputSystem\Events\DeltaStateEvent.cs" />
     <Compile Include="Library\PackageCache\com.unity.inputsystem@1.3.0\InputSystem\Actions\Composites\Vector2Composite.cs" />
-    <Compile Include="Library\PackageCache\com.unity.inputsystem@1.3.0\InputSystem\Plugins\PlayerInput\DefaultInputActions.cs" />
     <Compile Include="Library\PackageCache\com.unity.inputsystem@1.3.0\InputSystem\Controls\Processors\InvertProcessor.cs" />
+    <Compile Include="Library\PackageCache\com.unity.inputsystem@1.3.0\InputSystem\Plugins\PlayerInput\DefaultInputActions.cs" />
     <Compile Include="Library\PackageCache\com.unity.inputsystem@1.3.0\InputSystem\Devices\Commands\SetIMECursorPositionCommand.cs" />
     <Compile Include="Library\PackageCache\com.unity.inputsystem@1.3.0\InputSystem\Plugins\XR\Devices\OpenVR.cs" />
     <Compile Include="Library\PackageCache\com.unity.inputsystem@1.3.0\InputSystem\Actions\InputActionProperty.cs" />
@@ -317,10 +317,10 @@
     <Compile Include="Library\PackageCache\com.unity.inputsystem@1.3.0\InputSystem\Utilities\DelegateHelpers.cs" />
     <Compile Include="Library\PackageCache\com.unity.inputsystem@1.3.0\InputSystem\Controls\DiscreteButtonControl.cs" />
     <Compile Include="Library\PackageCache\com.unity.inputsystem@1.3.0\InputSystem\Controls\TouchPhaseControl.cs" />
-    <Compile Include="Library\PackageCache\com.unity.inputsystem@1.3.0\InputSystem\Utilities\TypeTable.cs" />
     <Compile Include="Library\PackageCache\com.unity.inputsystem@1.3.0\InputSystem\Plugins\Steam\SteamController.cs" />
     <Compile Include="Library\PackageCache\com.unity.inputsystem@1.3.0\InputSystem\Editor\Internal\EditorHelpers.cs" />
     <Compile Include="Library\PackageCache\com.unity.inputsystem@1.3.0\InputSystem\Controls\Processors\NormalizeVector3Processor.cs" />
+    <Compile Include="Library\PackageCache\com.unity.inputsystem@1.3.0\InputSystem\Utilities\TypeTable.cs" />
     <Compile Include="Library\PackageCache\com.unity.inputsystem@1.3.0\InputSystem\Controls\AxisControl.cs" />
     <Compile Include="Library\PackageCache\com.unity.inputsystem@1.3.0\InputSystem\Controls\Processors\ScaleVector2Processor.cs" />
     <Compile Include="Library\PackageCache\com.unity.inputsystem@1.3.0\InputSystem\Editor\ControlPicker\IInputControlPickerLayout.cs" />

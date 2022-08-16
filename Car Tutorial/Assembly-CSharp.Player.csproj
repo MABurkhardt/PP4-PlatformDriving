@@ -65,8 +65,10 @@
     <Compile Include="Assets\APC Military Vehicle-Mobile\camara3d\Scripts\Camera\CameraDefault.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\TerrainSampleAssets\ThirdPartyNotices.txt" />
     <None Include="Assets\Rowlan\Terrain\Stamps\Examples\Demo\readme.txt" />
     <None Include="Assets\APC Military Vehicle-Mobile\Read Me.txt" />
+    <None Include="Assets\TerrainSampleAssets\ShaderGraphs\CustomFunctions\CustomLighting.hlsl" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
@@ -669,6 +671,10 @@
       <Project>{8736DC59-C758-E033-E9F5-9FBF0656E808}</Project>
       <Name>Unity.VisualScripting.Core.Player</Name>
     </ProjectReference>
+    <ProjectReference Include="Unity.TerrainTools.Player.csproj">
+      <Project>{9523505B-9A12-0E8F-05E6-2EE8EDD151A0}</Project>
+      <Name>Unity.TerrainTools.Player</Name>
+    </ProjectReference>
     <ProjectReference Include="Unity.Services.Core.Analytics.Player.csproj">
       <Project>{72DB4DD0-6458-C58B-9803-5C2C8E02BBED}</Project>
       <Name>Unity.Services.Core.Analytics.Player</Name>
@@ -677,13 +683,13 @@
       <Project>{4F216CDE-DCA6-FBB0-69A5-3A189C4AD89A}</Project>
       <Name>Unity.Services.Core.Environments.Player</Name>
     </ProjectReference>
-    <ProjectReference Include="Unity.VisualScripting.State.Player.csproj">
-      <Project>{512E5B40-0FB1-1E36-EFB5-9FCE0B79F692}</Project>
-      <Name>Unity.VisualScripting.State.Player</Name>
-    </ProjectReference>
     <ProjectReference Include="RoadArchitect.Player.csproj">
       <Project>{04990A37-4A7C-5E9C-6430-62D8EC26741D}</Project>
       <Name>RoadArchitect.Player</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.VisualScripting.State.Player.csproj">
+      <Project>{512E5B40-0FB1-1E36-EFB5-9FCE0B79F692}</Project>
+      <Name>Unity.VisualScripting.State.Player</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

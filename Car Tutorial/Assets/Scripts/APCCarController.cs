@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 public class APCCarController : MonoBehaviour
 {
     [SerializeField] private GameObject body;
+    [SerializeField] private Rigidbody rb;
     private bool upButtonIsReady = true;
     private Quaternion initialRotation;
     //private PlayerControls controls;
@@ -91,8 +92,17 @@ public class APCCarController : MonoBehaviour
             if (upButtonIsReady)
             {
                 upButtonIsReady = false;
+                
+                //teleport player up 2 units to allow space to rotate
                 body.transform.position += new Vector3(0, 2, 0);
-                body.transform.rotation = initialRotation;
+
+                //rotate car facing same direction but angled upright
+                rb.velocity = Vector3.zero;
+                rb.angularVelocity = Vector3.zero;
+                Vector3 v = body.transform.localEulerAngles;
+                v.x = 0;
+                v.z = 0;
+                body.transform.localEulerAngles = v;
             }
         }
         else
@@ -126,6 +136,8 @@ public class APCCarController : MonoBehaviour
         currentSteerAngle = maxSteerAngle * horizontalInput;
         frontLeftCollider.steerAngle = currentSteerAngle;
         frontRightCollider.steerAngle = currentSteerAngle;
+        rearLeftCollider.steerAngle = -currentSteerAngle * .5f;
+        rearRightCollider.steerAngle = -currentSteerAngle * .5f;
     }
 
     private void UpdateWheels()

@@ -65,8 +65,10 @@
     <Compile Include="Assets\APC Military Vehicle-Mobile\camara3d\Scripts\Camera\CameraDefault.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\TerrainSampleAssets\ThirdPartyNotices.txt" />
     <None Include="Assets\Rowlan\Terrain\Stamps\Examples\Demo\readme.txt" />
     <None Include="Assets\APC Military Vehicle-Mobile\Read Me.txt" />
+    <None Include="Assets\TerrainSampleAssets\ShaderGraphs\CustomFunctions\CustomLighting.hlsl" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
@@ -773,6 +775,10 @@
       <Project>{993CF1A9-1E44-6905-7058-9562680D8BAD}</Project>
       <Name>Unity.EditorCoroutines.Editor</Name>
     </ProjectReference>
+    <ProjectReference Include="Unity.TerrainTools.csproj">
+      <Project>{4F319565-4641-4419-2818-48645A09ACBA}</Project>
+      <Name>Unity.TerrainTools</Name>
+    </ProjectReference>
     <ProjectReference Include="Unity.Services.Core.Analytics.csproj">
       <Project>{A3FD4BC0-B380-1A08-76CF-1AD822FB5671}</Project>
       <Name>Unity.Services.Core.Analytics</Name>
@@ -780,6 +786,10 @@
     <ProjectReference Include="Unity.VisualScripting.Shared.Editor.csproj">
       <Project>{C3F5A800-0512-B1D5-EB44-0DA00C6C5516}</Project>
       <Name>Unity.VisualScripting.Shared.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.TerrainTools.Editor.csproj">
+      <Project>{A6503029-55D0-184A-7599-DD2A07AA4D3B}</Project>
+      <Name>Unity.TerrainTools.Editor</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.Services.Core.Environments.csproj">
       <Project>{0217B038-32F9-2F72-6152-717CAA53DD36}</Project>
@@ -789,6 +799,10 @@
       <Project>{8BC09BA6-277B-CF33-BB2E-2278686CE9DC}</Project>
       <Name>Unity.Timeline.Editor</Name>
     </ProjectReference>
+    <ProjectReference Include="RoadArchitect.csproj">
+      <Project>{B8092E0E-B577-225F-681D-A50EBF182B7C}</Project>
+      <Name>RoadArchitect</Name>
+    </ProjectReference>
     <ProjectReference Include="Unity.TestTools.CodeCoverage.Editor.csproj">
       <Project>{25B0639F-9608-2EB8-24DD-A3E3C4384B4D}</Project>
       <Name>Unity.TestTools.CodeCoverage.Editor</Name>
@@ -796,10 +810,6 @@
     <ProjectReference Include="Unity.VisualScripting.State.csproj">
       <Project>{028819F6-E385-F6AA-6F38-7229F4C2344E}</Project>
       <Name>Unity.VisualScripting.State</Name>
-    </ProjectReference>
-    <ProjectReference Include="RoadArchitect.csproj">
-      <Project>{B8092E0E-B577-225F-681D-A50EBF182B7C}</Project>
-      <Name>RoadArchitect</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
