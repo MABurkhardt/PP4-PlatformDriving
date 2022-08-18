@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -35,10 +36,17 @@ public class APCCarController : MonoBehaviour
     [SerializeField] private Transform rearLeftTransform;
     [SerializeField] private Transform rearRightTransform;
 
+    [SerializeField] private TextMeshProUGUI carSpeed;
+
     private void Awake()
     {
         initialRotation = body.transform.rotation;
         //controls = new PlayerControls();
+    }
+
+    private void Start()
+    {
+        StewartPlatformController.singleton.Init("COM7", 115200);
     }
 
     //private void OnEnable()
@@ -54,6 +62,7 @@ public class APCCarController : MonoBehaviour
     private void Update()
     {
         GetInput();
+        ShowSpeed();
     }
 
     private void FixedUpdate()
@@ -167,5 +176,11 @@ public class APCCarController : MonoBehaviour
         rearRightCollider.motorTorque = -verticalInput * motorForce;
 
         ApplyBreaking();
+    }
+
+    private void ShowSpeed()
+    {
+        int roundedSpeed = (int)rb.velocity.magnitude;
+        carSpeed.text =  roundedSpeed + " mph";
     }
 }
