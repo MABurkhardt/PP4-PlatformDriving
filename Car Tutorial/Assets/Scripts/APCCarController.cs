@@ -6,12 +6,13 @@ using UnityEngine.InputSystem;
 
 public class APCCarController : MonoBehaviour
 {
+    float curZVel = 0;
+    float lastZVel = 0;
+
     [SerializeField] private GameObject body;
     [SerializeField] private Rigidbody rb;
+
     private bool upButtonIsReady = true;
-    private Quaternion initialRotation;
-    //private PlayerControls controls;
-    //[SerializeField] private GameObject go;
 
     private const string HORIZONTAL = "Horizontal";
     private const string VERTICAL = "Vertical";
@@ -37,10 +38,22 @@ public class APCCarController : MonoBehaviour
     [SerializeField] private Transform rearRightTransform;
 
     [SerializeField] private TextMeshProUGUI carSpeed;
+    [SerializeField] private Transform speedometer;
+    [SerializeField] private Transform needle;
+    private float maxSpeedAngle = -90;
+    private float zeroSpeedAngle = 135;
+    private float speedMax;
+    //private float speed;
+    [SerializeField] private Transform speedLabelTemp;
 
     private void Awake()
     {
-        initialRotation = body.transform.rotation;
+        //speed = 0f;
+        speedMax = 50f;
+        //speedLabelTemp.gameObject.SetActive(false);
+        CreateSpeedLabels();
+
+        //initialRotation = body.transform.rotation;
         //controls = new PlayerControls();
     }
 
@@ -49,24 +62,31 @@ public class APCCarController : MonoBehaviour
         StewartPlatformController.singleton.Init("COM7", 115200);
     }
 
-    //private void OnEnable()
-    //{
-    //    controls.Gameplay.Enable();
-    //}
-
-    //private void OnDisable()
-    //{
-    //    controls.Gameplay.Disable();
-    //}
-
     private void Update()
     {
+        Vector3 v = transform.InverseTransformDirection(rb.velocity);
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, Vector3.down, out hit))
+        {
+            float dist = Vector3.Distance(transform.position, hit.point) - 1.08f;
+            //Debug.Log(dist);
+            StewartPlatformController.singleton.floatValues[2] = -dist * 10;
+        }
+        StewartPlatformController.singleton.floatValues[3] = -Mathf.DeltaAngle(transform.eulerAngles.x, 0) * .5f;
+        StewartPlatformController.singleton.floatValues[4] = v.x * 1.5f;
+
         GetInput();
         ShowSpeed();
+        needle.eulerAngles = new Vector3(0, 0, GetSpeedRotation());
     }
 
     private void FixedUpdate()
     {
+        //lastZVel = curZVel;
+        //curZVel = transform.InverseTransformDirection(rb.velocity).z;
+        //Debug.Log((curZVel - lastZVel) * 10);
+        //StewartPlatformController.singleton.floatValues[3] = (curZVel - lastZVel) * 50;
+
         HandleMotor();
         HandleSteering();
         UpdateWheels();
@@ -178,9 +198,37 @@ public class APCCarController : MonoBehaviour
         ApplyBreaking();
     }
 
+    private void CreateSpeedLabels()
+    {
+        int labelAmount = 10;
+        float totalAngleSize = zeroSpeedAngle - maxSpeedAngle;
+
+        for (int i = 0; i < labelAmount; i++)
+        {
+            //Debug.Log("shit the bed");
+            Transform speedLabelTransform = Instantiate(speedLabelTemp, speedometer);
+            float labelSpeedNormalized = (float)i / labelAmount;
+            float speedLabelAngle = zeroSpeedAngle - labelSpeedNormalized * totalAngleSize;
+            speedLabelTransform.eulerAngles = new Vector3(0, 0, speedLabelAngle + 90);
+            speedLabelTransform.Find("SpeedIndicator").GetComponent<TextMeshProUGUI>().text = Mathf.RoundToInt(labelSpeedNormalized * speedMax).ToString();
+            speedLabelTransform.Find("SpeedIndicator").eulerAngles = Vector3.zero;
+            speedLabelTransform.gameObject.SetActive(true);
+            //Debug.Log("pain");
+        }
+
+        needle.SetAsLastSibling();
+    }
+
+    private float GetSpeedRotation()
+    {
+        float totalAngleSize = zeroSpeedAngle - maxSpeedAngle;
+        float normalizedSpeed = rb.velocity.magnitude / speedMax;
+        return zeroSpeedAngle - normalizedSpeed * totalAngleSize;
+    }
+
     private void ShowSpeed()
     {
         int roundedSpeed = (int)rb.velocity.magnitude;
-        carSpeed.text =  roundedSpeed + " mph";
+        carSpeed.text =  roundedSpeed + "\nmph";
     }
 }
