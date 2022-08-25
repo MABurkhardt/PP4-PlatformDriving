@@ -6,9 +6,6 @@ using UnityEngine.InputSystem;
 
 public class APCCarController : MonoBehaviour
 {
-    float curZVel = 0;
-    float lastZVel = 0;
-
     [SerializeField] private GameObject body;
     [SerializeField] private Rigidbody rb;
 
@@ -43,17 +40,13 @@ public class APCCarController : MonoBehaviour
     private float maxSpeedAngle = -90;
     private float zeroSpeedAngle = 135;
     private float speedMax;
-    //private float speed;
     [SerializeField] private Transform speedLabelTemp;
 
     private void Awake()
     {
-        //speed = 0f;
         speedMax = 50f;
-        //speedLabelTemp.gameObject.SetActive(false);
         CreateSpeedLabels();
 
-        //initialRotation = body.transform.rotation;
         //controls = new PlayerControls();
     }
 
@@ -69,11 +62,10 @@ public class APCCarController : MonoBehaviour
         if (Physics.Raycast(transform.position, Vector3.down, out hit))
         {
             float dist = Vector3.Distance(transform.position, hit.point) - 1.08f;
-            //Debug.Log(dist);
             StewartPlatformController.singleton.floatValues[2] = -dist * 10;
         }
         StewartPlatformController.singleton.floatValues[3] = -Mathf.DeltaAngle(transform.eulerAngles.x, 0) * .5f;
-        StewartPlatformController.singleton.floatValues[4] = v.x * 1.5f;
+        StewartPlatformController.singleton.floatValues[4] = v.x;
 
         GetInput();
         ShowSpeed();
@@ -82,11 +74,6 @@ public class APCCarController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        //lastZVel = curZVel;
-        //curZVel = transform.InverseTransformDirection(rb.velocity).z;
-        //Debug.Log((curZVel - lastZVel) * 10);
-        //StewartPlatformController.singleton.floatValues[3] = (curZVel - lastZVel) * 50;
-
         HandleMotor();
         HandleSteering();
         UpdateWheels();
@@ -97,7 +84,7 @@ public class APCCarController : MonoBehaviour
         //steering
         horizontalInput = Input.GetAxis(HORIZONTAL);
 
-        //forward/reverse/light brake
+        //forward/reverse/ebrake
         verticalInput = Input.GetAxis("RightTrigger");
         if (Input.GetAxis("LeftTrigger") > 0)
         {
@@ -163,10 +150,10 @@ public class APCCarController : MonoBehaviour
     private void HandleSteering()
     {
         currentSteerAngle = maxSteerAngle * horizontalInput;
-        frontLeftCollider.steerAngle = currentSteerAngle;
-        frontRightCollider.steerAngle = currentSteerAngle;
-        rearLeftCollider.steerAngle = -currentSteerAngle * .5f;
-        rearRightCollider.steerAngle = -currentSteerAngle * .5f;
+        frontLeftCollider.steerAngle = currentSteerAngle * .75f;
+        frontRightCollider.steerAngle = currentSteerAngle * .75f;
+        rearLeftCollider.steerAngle = -currentSteerAngle * .25f;
+        rearRightCollider.steerAngle = -currentSteerAngle * .25f;
     }
 
     private void UpdateWheels()
@@ -205,7 +192,6 @@ public class APCCarController : MonoBehaviour
 
         for (int i = 0; i < labelAmount; i++)
         {
-            //Debug.Log("shit the bed");
             Transform speedLabelTransform = Instantiate(speedLabelTemp, speedometer);
             float labelSpeedNormalized = (float)i / labelAmount;
             float speedLabelAngle = zeroSpeedAngle - labelSpeedNormalized * totalAngleSize;
@@ -213,7 +199,6 @@ public class APCCarController : MonoBehaviour
             speedLabelTransform.Find("SpeedIndicator").GetComponent<TextMeshProUGUI>().text = Mathf.RoundToInt(labelSpeedNormalized * speedMax).ToString();
             speedLabelTransform.Find("SpeedIndicator").eulerAngles = Vector3.zero;
             speedLabelTransform.gameObject.SetActive(true);
-            //Debug.Log("pain");
         }
 
         needle.SetAsLastSibling();
